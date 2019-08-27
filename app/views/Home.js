@@ -34,8 +34,9 @@ export default class Home extends Component {
           }
         })
         this.stopTimer(this.state.setTimeInterval)
-        // this.startSetTimer()
-        this.countDown()
+        this.startSetTimer()
+        
+        // this.countDown()
       }
       console.log(this.state.workoutData)
     }
@@ -81,12 +82,13 @@ export default class Home extends Component {
         this.endWorkout()
       } else {
         this.startTimer()
-        this.countDown()
+        this.startSetTimer()
+        // this.countDown()
       }
     }
 
     startSetTimer = () => {
-      var setTimeStamp = moment().startOf("day");
+      var setTimeStamp = moment().startOf("day")
       var interval = setInterval(() => { 
         this.setState(() => {
           return {setTime: this.countUp(setTimeStamp)}
@@ -103,6 +105,7 @@ export default class Home extends Component {
       console.log("TODO save workout to DB", this.state.workoutData)
     }
   render() {
+    console.log(this.state)
     const {
       containerStyle,
       circle,
@@ -115,7 +118,7 @@ export default class Home extends Component {
           <View style={circle}>
             <View style={makeCenter}>
                 <Image source={require('../assets/icons/heart.png')} style={{width:50,height:40}}/>
-                <Text style={boltTxt}>120</Text>
+                <Text style={boltTxt}>{moment().format("MM-DD-YYYY")}</Text>
                 <Text style={{borderBottomWidth:1,borderColor:'blue',width:250}}></Text>
             </View>
             <Grid>
